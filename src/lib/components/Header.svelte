@@ -22,9 +22,7 @@
 	<nav class="container-main flex items-center justify-between py-4">
 		<!-- Logo -->
 		<a href="/" class="flex items-center gap-2">
-			<div class="flex h-10 w-10 items-center justify-center rounded-lg bg-gradient-to-br from-primary-600 to-accent-600">
-				<span class="text-lg font-bold text-white">Dz</span>
-			</div>
+			<img src="/ec88bf56-7a12-4512-a335-733d7c515b41.jpg" alt="Dzungli Logo" class="h-10 w-10 rounded-lg object-cover" />
 			<span class="hidden text-xl font-bold text-neutral-900 sm:inline">Dzungli</span>
 		</a>
 
