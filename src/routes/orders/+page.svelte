@@ -119,6 +119,7 @@
 						</svg>
 					</a>
 				</div>
+			</div>
 		{:else}
 			<div class="space-y-8">
 				{#each data.orders as order (order.id)}
