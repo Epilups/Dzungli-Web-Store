@@ -4,7 +4,6 @@
 
 <footer class="border-t border-neutral-200 bg-neutral-50">
 	<div class="container-main py-8">
-		<!-- Bottom Section -->
 		<div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
 			<p class="text-sm text-neutral-600">
 				© {currentYear} Dzungli. All rights reserved.

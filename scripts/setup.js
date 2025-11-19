@@ -104,10 +104,10 @@ const migrateDb = await new Promise(resolve => {
 });
 
 if (migrateDb) {
-  console.log('🔄 Running database migration...');
+  console.log(' Running database migration...');
   try {
     execSync('node scripts/migrate.js', { stdio: 'inherit' });
-    console.log('✅ Database migration completed');
+    console.log(' Database migration completed');
     
     // Create admin user
     const createAdmin = await new Promise(resolve => {
@@ -122,14 +122,14 @@ if (migrateDb) {
     });
     
     if (createAdmin) {
-      console.log('👤 Creating admin user...');
+      console.log(' Creating admin user...');
       execSync('node scripts/create-admin.js', { stdio: 'inherit' });
-      console.log('✅ Admin user created');
+      console.log(' Admin user created');
     }
     
   } catch (error) {
-    console.error('❌ Database migration failed:', error.message);
-    console.log('💡 Make sure your database is running and credentials are correct');
+    console.error(' Database migration failed:', error.message);
+    console.log(' Make sure your database is running and credentials are correct');
   }
 }
 
@@ -140,5 +140,5 @@ console.log('2. Visit http://localhost:5173');
 console.log('3. For deployment instructions, see DEPLOYMENT.md');
 
 if (missingEnvVars.length > 0) {
-  console.log('\n⚠️  Don\'t forget to update your .env file with proper credentials before deploying!');
+  console.log('\n  Don\'t forget to update your .env file with proper credentials before deploying!');
 }

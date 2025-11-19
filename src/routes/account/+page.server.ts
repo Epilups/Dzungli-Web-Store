@@ -32,7 +32,6 @@ export const load: PageServerLoad = async (event) => {
   }
 
   try {
-    // Get user's orders
     const orders = await query<Order>(
       `SELECT * FROM orders 
        WHERE user_id = $1 
@@ -40,7 +39,6 @@ export const load: PageServerLoad = async (event) => {
       [user.id]
     );
 
-    // Get items for each order
     const ordersWithItems = await Promise.all(
       orders.map(async (order) => {
         const items = await query<OrderItem>(

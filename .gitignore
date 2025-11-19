@@ -104,3 +104,15 @@ public
 # Temporary folders
 tmp/
 temp/
+
+# MD Files
+AGENTS.md
+BACKEND_IMPLEMENTATION.md
+DEPLOYMENT_IMPLEMENTATION.md
+DEPLOYMENT.md
+QUICK_START.md
+README.md
+
+# Docker files
+Dockerfile
+docker-compose.yml

@@ -15,7 +15,7 @@ async function resetReviews() {
   });
   
   try {
-    console.log('🔄 Starting reviews migration...');
+    console.log(' Starting reviews migration...');
     
     // Create reviews table
     await pool.query(`
@@ -31,14 +31,14 @@ async function resetReviews() {
         UNIQUE(user_id, product_id, order_id)
       );
     `);
-    console.log('✅ Reviews table created');
+    console.log(' Reviews table created');
     
     // Create indexes
     await pool.query(`
       CREATE INDEX IF NOT EXISTS idx_reviews_product_id ON reviews(product_id);
       CREATE INDEX IF NOT EXISTS idx_reviews_user_id ON reviews(user_id);
     `);
-    console.log('✅ Indexes created');
+    console.log(' Indexes created');
     
     // Reset all product ratings and review counts to 0
     await pool.query(`
@@ -46,11 +46,11 @@ async function resetReviews() {
       SET rating = 0, review_count = 0 
       WHERE rating != 0 OR review_count != 0;
     `);
-    console.log('✅ Product ratings reset to 0');
+    console.log('Product ratings reset to 0');
     
-    console.log('🎉 Reviews migration completed successfully!');
+    console.log(' Reviews migration completed successfully!');
   } catch (error) {
-    console.error('❌ Migration failed:', error);
+    console.error(' Migration failed:', error);
     throw error;
   } finally {
     await pool.end();

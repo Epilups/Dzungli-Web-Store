@@ -5,15 +5,12 @@ const { Pool } = pg;
 // Create a connection pool
 // Determine if SSL should be used
 const shouldUseSSL = () => {
-  // Always use SSL if we're connecting to DigitalOcean database host
   if (process.env.DATABASE_HOST && process.env.DATABASE_HOST.includes('digitalocean.com')) {
     return { rejectUnauthorized: false };
   }
-  // Use SSL in production environment
   if (process.env.NODE_ENV === 'production') {
     return { rejectUnauthorized: false };
   }
-  // No SSL for local development (unless DATABASE_URL is set)
   return false;
 };
 
@@ -29,7 +26,6 @@ export const pool = new Pool({
   connectionTimeoutMillis: 2000,
 });
 
-// Test connection function
 export async function testConnection() {
   try {
     const client = await pool.connect();
@@ -43,7 +39,6 @@ export async function testConnection() {
   }
 }
 
-// Query helper function with error handling
 export async function query<T = any>(text: string, params?: any[]): Promise<T[]> {
   const start = Date.now();
   try {
@@ -57,7 +52,6 @@ export async function query<T = any>(text: string, params?: any[]): Promise<T[]>
   }
 }
 
-// Transaction helper
 export async function transaction<T>(callback: (client: pg.PoolClient) => Promise<T>): Promise<T> {
   const client = await pool.connect();
   try {

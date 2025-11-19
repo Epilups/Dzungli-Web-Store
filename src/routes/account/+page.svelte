@@ -106,14 +106,13 @@
 </script>
 
 <svelte:head>
-	<title>My Account - StoreHub</title>
+	<title>My Account - Dzungli</title>
 	<meta name="description" content="Manage your account settings and view orders." />
 </svelte:head>
 
 <section class="py-8 sm:py-12">
 	<div class="container-main">
 		{#if !data.user}
-			<!-- Login/Register Forms -->
 			<div class="mx-auto max-w-md">
 				<h1 class="section-title mb-8 text-center">
 					{showLoginForm ? 'Login' : 'Create Account'}

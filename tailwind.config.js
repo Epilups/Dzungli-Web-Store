@@ -4,7 +4,6 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				// Green color palette - professional and easy on the eyes
 				primary: {
 					50: '#f0fdf4',
 					100: '#dcfce7',

@@ -20,7 +20,6 @@
 
 <header class="sticky top-0 z-50 border-b border-neutral-200 bg-white shadow-sm-atlassian">
 	<nav class="container-main flex items-center justify-between py-4">
-		<!-- Logo -->
 		<a href="/" class="flex items-center gap-2">
 			<img src="/ec88bf56-7a12-4512-a335-733d7c515b41.jpg" alt="Dzungli Logo" class="h-10 w-10 rounded-lg object-cover" />
 			<span class="hidden text-xl font-bold text-neutral-900 sm:inline">Dzungli</span>
@@ -40,12 +39,10 @@
 			{/each}
 		</div>
 
-		<!-- Right Actions -->
 		<div class="flex items-center gap-4">
 			<a href="/account" class="text-sm font-medium text-neutral-600 transition-colors hover:text-neutral-900">
 				Account
 			</a>
-			<!-- Mobile Menu Button -->
 			<button
 				class="md:hidden p-2 text-neutral-600 hover:text-neutral-900"
 				aria-label="Toggle menu"
@@ -68,7 +65,6 @@
 		</div>
 	</nav>
 
-	<!-- Mobile Navigation -->
 	{#if isMobileMenuOpen}
 		<div class="border-t border-neutral-200 bg-white md:hidden">
 			<div class="container-main space-y-1 py-4">

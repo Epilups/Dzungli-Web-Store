@@ -4,17 +4,13 @@ import path from 'path';
 
 const { Pool } = pg;
 
-// Determine if SSL should be used
 const shouldUseSSL = () => {
-  // Always use SSL if we're connecting to DigitalOcean database host
   if (process.env.DATABASE_HOST && process.env.DATABASE_HOST.includes('digitalocean.com')) {
     return { rejectUnauthorized: false };
   }
-  // Use SSL in production environment
   if (process.env.NODE_ENV === 'production') {
     return { rejectUnauthorized: false };
   }
-  // No SSL for local development (unless DATABASE_URL is set)
   return false;
 };
 
@@ -29,20 +25,20 @@ async function migrate() {
   });
 
   try {
-    console.log('🔄 Starting database migration...');
+    console.log(' Starting database migration...');
     
     const schemaPath = path.join(process.cwd(), 'src/lib/server/db/schema.sql');
     const schema = fs.readFileSync(schemaPath, 'utf8');
     
     await pool.query(schema);
     
-    console.log('✅ Database migration completed successfully!');
-    console.log('📊 Tables created: users, products, orders, order_items, cart_items, sessions');
-    console.log('🎉 Sample products and admin user inserted!');
-    console.log('👤 Admin credentials: admin@storehub.com / admin123');
+    console.log(' Database migration completed successfully!');
+    console.log(' Tables created: users, products, orders, order_items, cart_items, sessions');
+    console.log(' Sample products and admin user inserted!');
+    console.log(' Admin credentials: admin@storehub.com / admin123');
     
   } catch (error) {
-    console.error('❌ Migration failed:', error);
+    console.error(' Migration failed:', error);
     throw error;
   } finally {
     await pool.end();

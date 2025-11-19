@@ -21,17 +21,14 @@ export interface JWTPayload {
   isAdmin: boolean;
 }
 
-// Hash password
 export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 10);
 }
 
-// Verify password
 export async function verifyPassword(password: string, hash: string): Promise<boolean> {
   return bcrypt.compare(password, hash);
 }
 
-// Generate JWT token
 export function generateToken(user: User): string {
   const payload: JWTPayload = {
     userId: user.id,
@@ -41,7 +38,6 @@ export function generateToken(user: User): string {
   return jwt.sign(payload, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
 }
 
-// Verify JWT token
 export function verifyToken(token: string): JWTPayload | null {
   try {
     return jwt.verify(token, JWT_SECRET) as JWTPayload;
@@ -50,7 +46,6 @@ export function verifyToken(token: string): JWTPayload | null {
   }
 }
 
-// Get user from token in request
 export async function getUserFromRequest(event: RequestEvent): Promise<User | null> {
   const cookies = event.request.headers.get('cookie');
   if (!cookies) return null;
@@ -71,7 +66,6 @@ export async function getUserFromRequest(event: RequestEvent): Promise<User | nu
   return users[0] || null;
 }
 
-// Register new user
 export async function registerUser(
   email: string,
   password: string,
@@ -89,10 +83,8 @@ export async function registerUser(
       return { error: 'User with this email already exists' };
     }
 
-    // Hash password
     const passwordHash = await hashPassword(password);
 
-    // Create user
     const users = await query<User>(
       `INSERT INTO users (email, password_hash, first_name, last_name) 
        VALUES ($1, $2, $3, $4) 
@@ -110,7 +102,6 @@ export async function registerUser(
   }
 }
 
-// Login user
 export async function loginUser(
   email: string,
   password: string
@@ -142,7 +133,6 @@ export async function loginUser(
   }
 }
 
-// Require authentication middleware
 export async function requireAuth(event: RequestEvent): Promise<User | Response> {
   const user = await getUserFromRequest(event);
   
@@ -156,7 +146,6 @@ export async function requireAuth(event: RequestEvent): Promise<User | Response>
   return user;
 }
 
-// Require admin middleware
 export async function requireAdmin(event: RequestEvent): Promise<User | Response> {
   const user = await getUserFromRequest(event);
   
