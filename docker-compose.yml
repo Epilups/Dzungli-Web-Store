@@ -1,0 +1,66 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: storehub-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: storehub_dev
+      POSTGRES_USER: storehub_user
+      POSTGRES_PASSWORD: storehub_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - storehub-network
+
+  # StoreHub Application
+  storehub:
+    build: .
+    container_name: storehub-app
+    restart: unless-stopped
+    environment:
+      DATABASE_USER: storehub_user
+      DATABASE_PASSWORD: storehub_password
+      DATABASE_HOST: postgres
+      DATABASE_PORT: 5432
+      DATABASE_NAME: storehub_dev
+      JWT_SECRET: development-jwt-secret-key-change-in-production
+      NODE_ENV: production
+    volumes:
+      - ./scripts:/app/scripts
+    ports:
+      - "5173:5173"
+    depends_on:
+      - postgres
+    networks:
+      - storehub-network
+    command: ["sh", "-c", "npm run build && npm run preview"]
+
+  # pgAdmin for database management (optional)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: storehub-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres
+    networks:
+      - storehub-network
+
+volumes:
+  postgres_data:
+  pgadmin_data:
+
+networks:
+  storehub-network:
+    driver: bridge
