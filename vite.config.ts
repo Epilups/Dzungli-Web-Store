@@ -9,7 +9,8 @@ export default defineConfig({
 	},
 	preview: {
 		port: parseInt(process.env.PORT || '5173'),
-		host: true
+		host: true,
+		allowedHosts: ['dzungli-app-8eo5t.ondigitalocean.app', 'localhost', '.ondigitalocean.app']
 	},
 	test: {
 		projects: [
