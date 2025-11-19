@@ -4,6 +4,20 @@ import path from 'path';
 
 const { Pool } = pg;
 
+// Determine if SSL should be used
+const shouldUseSSL = () => {
+  // Always use SSL if we're connecting to DigitalOcean database host
+  if (process.env.DATABASE_HOST && process.env.DATABASE_HOST.includes('digitalocean.com')) {
+    return { rejectUnauthorized: false };
+  }
+  // Use SSL in production environment
+  if (process.env.NODE_ENV === 'production') {
+    return { rejectUnauthorized: false };
+  }
+  // No SSL for local development (unless DATABASE_URL is set)
+  return false;
+};
+
 async function migrate() {
   const pool = new Pool({
     user: process.env.DATABASE_USER || 'doadmin',
@@ -11,7 +25,7 @@ async function migrate() {
     host: process.env.DATABASE_HOST || 'webshop-postgresql-fra1-43263-do-user-13924298-0.g.db.ondigitalocean.com',
     port: parseInt(process.env.DATABASE_PORT || '25060'),
     database: process.env.DATABASE_NAME || 'defaultdb',
-    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+    ssl: shouldUseSSL()
   });
 
   try {
