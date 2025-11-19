@@ -205,15 +205,17 @@
 												<!-- Review Form -->
 												{#if reviewFormVisible[`${order.id}-${item.productId}`]}
 													<div class="mt-3 space-y-3 bg-neutral-50 p-3 rounded-lg">
-														<div>
-															<label class="block text-sm font-semibold text-neutral-900 mb-2">
-																Rating
-															</label>
-															<div class="flex gap-1">
-																{#each Array(5) as _, i}
-																	<button
-																		type="button"
-																		on:click={() => reviewRating[`${order.id}-${item.productId}`] = i + 1}
+													  <div>
+													    <label for="rating-{order.id}-{item.productId}" class="block text-sm font-semibold text-neutral-900 mb-2">
+													      Rating
+													    </label>
+													    <div class="flex gap-1">
+													      {#each Array(5) as _, i}
+													        <button
+													          id="rating-{order.id}-{item.productId}"
+													          type="button"
+													          aria-label="Rate {item.productName} {i + 1} stars"
+													          on:click={() => reviewRating[`${order.id}-${item.productId}`] = i + 1}
 																		class="focus:outline-none"
 																	>
 																		<svg

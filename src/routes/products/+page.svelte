@@ -223,10 +223,11 @@
 
 									<!-- Price and Button -->
 									<div class="mt-auto flex items-end justify-between gap-4">
-										<p class="text-2xl font-bold text-primary-600">${product.price.toFixed(2)}</p>
-										<button
-											on:click={() => addToCart(product)}
-											disabled={!product.inStock}
+									  <p class="text-2xl font-bold text-primary-600">${product.price.toFixed(2)}</p>
+									  <button
+									    on:click={() => addToCart(product)}
+									    aria-label="Add {product.name} to cart"
+									    disabled={!product.inStock}
 											class="btn-primary btn-sm disabled:opacity-50"
 										>
 											<svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

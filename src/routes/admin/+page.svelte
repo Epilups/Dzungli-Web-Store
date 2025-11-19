@@ -182,33 +182,33 @@
 						{editingProduct ? 'Edit Product' : 'Add New Product'}
 					</h2>
 					<div class="grid gap-4 sm:grid-cols-2">
-						<div class="sm:col-span-2">
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Product Name</label>
-							<input type="text" bind:value={productName} class="input-field" required />
-						</div>
-						<div class="sm:col-span-2">
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Description</label>
-							<textarea bind:value={productDescription} class="input-field min-h-[100px]"></textarea>
-						</div>
-						<div>
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Price ($)</label>
-							<input type="number" bind:value={productPrice} step="0.01" class="input-field" required />
-						</div>
-						<div>
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Stock Quantity</label>
-							<input type="number" bind:value={productStock} class="input-field" required />
-						</div>
-						<div>
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Category</label>
-							<select bind:value={productCategory} class="input-field">
-								{#each categories as cat}
+					  <div class="sm:col-span-2">
+					    <label for="productName" class="block text-sm font-semibold text-neutral-900 mb-2">Product Name</label>
+					    <input id="productName" type="text" bind:value={productName} class="input-field" required />
+					  </div>
+					  <div class="sm:col-span-2">
+					    <label for="productDescription" class="block text-sm font-semibold text-neutral-900 mb-2">Description</label>
+					    <textarea id="productDescription" bind:value={productDescription} class="input-field min-h-[100px]"></textarea>
+					  </div>
+					  <div>
+					    <label for="productPrice" class="block text-sm font-semibold text-neutral-900 mb-2">Price ($)</label>
+					    <input id="productPrice" type="number" bind:value={productPrice} step="0.01" class="input-field" required />
+					  </div>
+					  <div>
+					    <label for="productStock" class="block text-sm font-semibold text-neutral-900 mb-2">Stock Quantity</label>
+					    <input id="productStock" type="number" bind:value={productStock} class="input-field" required />
+					  </div>
+					  <div>
+					    <label for="productCategory" class="block text-sm font-semibold text-neutral-900 mb-2">Category</label>
+					    <select id="productCategory" bind:value={productCategory} class="input-field">
+					      {#each categories as cat}
 									<option value={cat}>{cat}</option>
 								{/each}
 							</select>
 						</div>
 						<div>
-							<label class="block text-sm font-semibold text-neutral-900 mb-2">Image URL</label>
-							<input type="url" bind:value={productImage} class="input-field" placeholder="https://..." />
+						  <label for="productImage" class="block text-sm font-semibold text-neutral-900 mb-2">Image URL</label>
+						  <input id="productImage" type="url" bind:value={productImage} class="input-field" placeholder="https://..." />
 						</div>
 					</div>
 					<div class="mt-6 flex gap-3">
