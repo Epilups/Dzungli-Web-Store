@@ -9,7 +9,9 @@ export const pool = new Pool({
   host: process.env.DATABASE_HOST || 'webshop-postgresql-fra1-43263-do-user-13924298-0.g.db.ondigitalocean.com',
   port: parseInt(process.env.DATABASE_PORT || '25060'),
   database: process.env.DATABASE_NAME || 'defaultdb',
-  ssl: true,
+  ssl: process.env.NODE_ENV === 'production' ? {
+    rejectUnauthorized: false
+  } : false,
   max: 20,
   idleTimeoutMillis: 30000,
   connectionTimeoutMillis: 2000,
