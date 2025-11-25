@@ -119,7 +119,7 @@
 							type="text"
 							placeholder="Search by name or description..."
 							bind:value={searchQuery}
-							on:input={() => updateFilters()}
+							oninput={updateFilters}
 							class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all"
 						/>
 					</div>
@@ -129,38 +129,26 @@
 						<h3 class="mb-3 text-sm font-medium text-slate-700">🎨 By Collection</h3>
 						<div class="space-y-2">
 							{#each categories as category}
-								<div class="flex items-center gap-3">
-									<input
-										type="radio"
-										id="category-{category.value}"
-										name="category"
-										value={category.value}
-										checked={selectedCategory === category.value}
-										on:change={() => {
+								<button
+									type="button"
+									onclick={() => {
+										selectedCategory = category.value;
+									}}
+									onkeydown={(e) => {
+										if (e.key === 'Enter' || e.key === ' ') {
+											e.preventDefault();
 											selectedCategory = category.value;
-										}}
-										on:keydown={(e) => {
-											if (e.key === 'Enter' || e.key === ' ') {
-												e.preventDefault();
-												selectedCategory = category.value;
-											}
-										}}
-										class="h-4 w-4 rounded border-2 border-slate-300 focus:outline-none focus:ring-2 focus:ring-slate-400 cursor-pointer appearance-none"
-									/>
-									<label
-										for="category-{category.value}"
-										class="flex items-center gap-3 cursor-pointer group"
-									>
-										<div class="h-4 w-4 rounded border-2 border-slate-300 group-hover:border-slate-400 group-checked:border-slate-600 group-checked:bg-slate-600 transition-all duration-200 relative">
-											{#if selectedCategory === category.value}
-												<svg class="h-full w-full text-slate-600 absolute inset-0 m-0.5" fill="currentColor" viewBox="0 0 20 20">
-													<path d="M16.707 5.293a1 1 0 00-1.414 0L8 12.586 4.707 9.293a1 1 0 00-1.414 1.414l4 4a1 1 0 001.414 0l8-8a1 1 0 000-1.414z" />
-												</svg>
-											{/if}
-										</div>
-										<span class="text-sm text-slate-600 group-hover:text-slate-700 font-medium transition-colors">{category.label}</span>
-									</label>
-								</div>
+										}
+									}}
+									class="flex items-center gap-3 cursor-pointer group text-left w-full"
+								>
+									<div class="h-4 w-4 rounded border-2 border-slate-300 group-hover:border-slate-400 group-checked:border-slate-600 group-checked:bg-slate-600 transition-all duration-200 relative">
+										{#if selectedCategory === category.value}
+											<div class="h-full w-full bg-slate-600 rounded"></div>
+										{/if}
+									</div>
+									<span class="text-sm text-slate-600 group-hover:text-slate-700 font-medium transition-colors">{category.label}</span>
+								</button>
 							{/each}
 						</div>
 					</div>
@@ -170,7 +158,7 @@
 						<label for="sort" class="mb-3 block text-sm font-medium text-slate-700">
 							✨ Sort By
 						</label>
-						<select bind:value={sortBy} on:change={() => updateFilters()} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all">
+						<select bind:value={sortBy} onchange={() => updateFilters()} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all">
 							{#each sortOptions as option}
 								<option value={option.value} class="text-slate-700">{option.label}</option>
 							{/each}
@@ -180,7 +168,7 @@
 					<!-- Clear Filters -->
 					{#if selectedCategory !== 'all' || searchQuery}
 						<button
-							on:click={() => {
+							onclick={() => {
 								selectedCategory = 'all';
 								searchQuery = '';
 								sortBy = 'featured';
@@ -206,7 +194,7 @@
 						<h3 class="text-2xl font-bold text-slate-900 mb-2">No Pieces Found</h3>
 						<p class="text-slate-600 mb-4">The perfect piece is out there. Try adjusting your search.</p>
 						<button
-							on:click={() => {
+							onclick={() => {
 								selectedCategory = 'all';
 								searchQuery = '';
 								sortBy = 'featured';
@@ -286,7 +274,7 @@
 									<div class="flex items-center justify-between">
 										<p class="text-xl font-bold text-slate-900">${product.price.toFixed(2)}</p>
 										<button
-											on:click={() => addToCart(product)}
+											onclick={() => addToCart(product)}
 											aria-label="Add {product.name} to cart"
 											disabled={!product.inStock}
 											class="p-2 text-slate-600 hover:text-slate-900 disabled:text-slate-300 disabled:cursor-not-allowed transition-colors"
