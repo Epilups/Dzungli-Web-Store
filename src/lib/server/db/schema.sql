@@ -96,7 +96,7 @@ CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_product_id ON reviews(product_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_user_id ON reviews(user_id);
 
--- Insert sample products (with 0 rating and 0 reviews by default)
+-- Insert some products
 INSERT INTO products (name, description, price, image_url, category, stock_quantity, rating, review_count) VALUES
 ('Premium Wireless Headphones', 'High-quality wireless headphones with noise cancellation', 149.99, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop', 'electronics', 50, 0, 0),
 ('Smart Watch Pro', 'Advanced smartwatch with health tracking features', 299.99, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop', 'electronics', 30, 0, 0),

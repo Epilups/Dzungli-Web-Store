@@ -17,7 +17,6 @@
 
 	export let data: PageData;
 	
-	// Make products reactive to data changes
 	$: products = data.products || [];
 	let selectedCategory = $page.url.searchParams.get('category') || 'all';
 	let sortBy = $page.url.searchParams.get('sort') || 'featured';
@@ -53,7 +52,6 @@
 	}
 
 	$: if (browser) {
-		// Track all filter changes for reactive updates
 		selectedCategory, sortBy, searchQuery;
 		updateFilters();
 	}

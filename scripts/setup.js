@@ -16,27 +16,27 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 
-console.log('🚀 StoreHub Setup Script\n');
+console.log('StoreHub Setup Script\n');
 
 // Check Node.js version
 const nodeVersion = process.version;
 const majorVersion = parseInt(nodeVersion.slice(1).split('.')[0]);
 
 if (majorVersion < 20) {
-  console.error('❌ Node.js version 20.19+ or 22.12+ is required');
-  console.error(`❌ You have: ${nodeVersion}`);
+  console.error(' Node.js version 20.19+ or 22.12+ is required');
+  console.error(` You have: ${nodeVersion}`);
   process.exit(1);
 } else {
-  console.log(`✅ Node.js version: ${nodeVersion}`);
+  console.log(` Node.js version: ${nodeVersion}`);
 }
 
 // Check if package.json exists
 if (!fs.existsSync(path.join(rootDir, 'package.json'))) {
-  console.error('❌ package.json not found. Make sure you are in the correct directory.');
+  console.error(' package.json not found. Make sure you are in the correct directory.');
   process.exit(1);
 }
 
-console.log('✅ package.json found');
+console.log(' package.json found');
 
 // Check if .env file exists
 const envPath = path.join(rootDir, '.env');
@@ -44,25 +44,25 @@ const envExamplePath = path.join(rootDir, '.env.example');
 
 if (!fs.existsSync(envPath)) {
   if (fs.existsSync(envExamplePath)) {
-    console.log('📝 Creating .env file from .env.example');
+    console.log(' Creating .env file from .env.example');
     fs.copyFileSync(envExamplePath, envPath);
-    console.log('✅ .env file created');
-    console.log('⚠️  Please update the .env file with your database credentials');
+    console.log(' .env file created');
+    console.log('  Please update the .env file with your database credentials');
   } else {
-    console.error('❌ Neither .env nor .env.example found');
+    console.error(' Neither .env nor .env.example found');
     process.exit(1);
   }
 } else {
-  console.log('✅ .env file exists');
+  console.log(' .env file exists');
 }
 
 // Install dependencies
-console.log('📦 Installing dependencies...');
+console.log(' Installing dependencies...');
 try {
   execSync('npm install', { stdio: 'inherit' });
-  console.log('✅ Dependencies installed');
+  console.log(' Dependencies installed');
 } catch (error) {
-  console.error('❌ Failed to install dependencies');
+  console.error(' Failed to install dependencies');
   process.exit(1);
 }
 
@@ -81,15 +81,15 @@ const requiredEnvVars = [
 const missingEnvVars = requiredEnvVars.filter(varName => !envContent.includes(`${varName}=`));
 
 if (missingEnvVars.length > 0) {
-  console.log('⚠️  Missing environment variables:');
+  console.log('  Missing environment variables:');
   missingEnvVars.forEach(varName => console.log(`   - ${varName}`));
-  console.log('⚠️  Please add these to your .env file');
+  console.log('  Please add these to your .env file');
 } else {
-  console.log('✅ All required environment variables are present');
+  console.log(' All required environment variables are present');
 }
 
 // Database migration prompt
-console.log('\n🗄️  Database Setup');
+console.log('\n  Database Setup');
 const readline = await import('readline').then(m => m.default);
 const rl = readline.createInterface({
   input: process.stdin,
@@ -109,7 +109,6 @@ if (migrateDb) {
     execSync('node scripts/migrate.js', { stdio: 'inherit' });
     console.log(' Database migration completed');
     
-    // Create admin user
     const createAdmin = await new Promise(resolve => {
       const rl2 = readline.createInterface({
         input: process.stdin,
@@ -133,7 +132,7 @@ if (migrateDb) {
   }
 }
 
-console.log('\n🎉 Setup completed!');
+console.log('\n Setup completed!');
 console.log('\nNext steps:');
 console.log('1. Start development server: npm run dev');
 console.log('2. Visit http://localhost:5173');

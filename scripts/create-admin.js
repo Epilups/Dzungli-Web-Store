@@ -16,9 +16,8 @@ async function createAdmin() {
   });
 
   try {
-    console.log('🔐 Creating admin user with proper password hash...');
+    console.log(' Creating admin user with proper password hash...');
     
-    // Generate proper bcrypt hash for 'admin123'
     const passwordHash = await bcrypt.hash('admin123', 10);
     
     // Insert or update admin user
@@ -39,7 +38,7 @@ async function createAdmin() {
     console.log(' Admin panel at: http://localhost:5173/admin');
     
   } catch (error) {
-    console.error('❌ Error creating admin:', error);
+    console.error(' Error creating admin:', error);
   } finally {
     await pool.end();
   }
