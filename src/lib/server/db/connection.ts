@@ -16,8 +16,8 @@ const shouldUseSSL = () => {
 
 export const pool = new Pool({
   user: process.env.DATABASE_USER || 'doadmin',
-  password: process.env.DATABASE_PASSWORD || 'AVNS_GUQCIg9T0u45BV-7CyN',
-  host: process.env.DATABASE_HOST || 'webshop-postgresql-fra1-43263-do-user-13924298-0.g.db.ondigitalocean.com',
+  password: process.env.DATABASE_PASSWORD || '',
+  host: process.env.DATABASE_HOST || '',
   port: parseInt(process.env.DATABASE_PORT || '25060'),
   database: process.env.DATABASE_NAME || 'defaultdb',
   ssl: shouldUseSSL(),
