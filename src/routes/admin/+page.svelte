@@ -159,7 +159,7 @@
 					? 'bg-white text-slate-900 shadow-sm'
 					: 'text-slate-600 hover:text-slate-700'}"
 			>
-				🎨 Collections ({data.products.length})
+				Collections ({data.products.length})
 			</button>
 			<button
 				on:click={() => (activeTab = 'orders')}
@@ -167,7 +167,7 @@
 					? 'bg-white text-slate-900 shadow-sm'
 					: 'text-slate-600 hover:text-slate-700'}"
 			>
-			📦 Orders ({data.orders.length})
+			Orders ({data.orders.length})
 			</button>
 		</div>
 
@@ -182,28 +182,28 @@
 			{#if showProductForm}
 				<div class="bg-white border border-slate-100 rounded-2xl p-8 mb-8 shadow-lg">
 					<h2 class="text-2xl font-bold text-slate-900 mb-6">
-						{editingProduct ? '✨ Edit Curated Piece' : '➕ Add New Curated Piece'}
+						{editingProduct ? 'Edit Curated Piece' : 'Add New Curated Piece'}
 					</h2>
 					<form on:submit|preventDefault={saveProduct} class="grid gap-6">
 						<div class="grid gap-6 sm:grid-cols-2">
 							<div class="sm:col-span-2">
-								<label for="productName" class="block text-sm font-medium text-slate-700 mb-2">🎨 Piece Name</label>
+								<label for="productName" class="block text-sm font-medium text-slate-700 mb-2"> Piece Name</label>
 								<input id="productName" type="text" bind:value={productName} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all" required />
 							</div>
 							<div class="sm:col-span-2">
-								<label for="productDescription" class="block text-sm font-medium text-slate-700 mb-2">📝 Story & Description</label>
+								<label for="productDescription" class="block text-sm font-medium text-slate-700 mb-2">Story & Description</label>
 								<textarea id="productDescription" bind:value={productDescription} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all min-h-[120px] resize-none" placeholder="Tell the story of this piece..."></textarea>
 							</div>
 							<div>
-								<label for="productPrice" class="block text-sm font-medium text-slate-700 mb-2">💰 Investment Value ($)</label>
+								<label for="productPrice" class="block text-sm font-medium text-slate-700 mb-2">Investment Value ($)</label>
 								<input id="productPrice" type="number" bind:value={productPrice} step="0.01" class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all" required />
 							</div>
 							<div>
-								<label for="productStock" class="block text-sm font-medium text-slate-700 mb-2">📦 Available Quantity</label>
+								<label for="productStock" class="block text-sm font-medium text-slate-700 mb-2">Available Quantity</label>
 								<input id="productStock" type="number" bind:value={productStock} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all" required />
 							</div>
 							<div>
-								<label for="productCategory" class="block text-sm font-medium text-slate-700 mb-2">🎨 Collection Type</label>
+								<label for="productCategory" class="block text-sm font-medium text-slate-700 mb-2">Collection Type</label>
 								<select id="productCategory" bind:value={productCategory} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all">
 									{#each categories as cat}
 										<option value={cat}>{cat}</option>
@@ -211,16 +211,16 @@
 								</select>
 							</div>
 							<div>
-								<label for="productImage" class="block text-sm font-medium text-slate-700 mb-2">🖼️ Visual Representation</label>
+								<label for="productImage" class="block text-sm font-medium text-slate-700 mb-2">Visual Representation</label>
 								<input id="productImage" type="url" bind:value={productImage} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all" placeholder="https://..." />
 							</div>
 						</div>
 						<div class="flex gap-4 pt-6">
 							<button on:click={saveProduct} class="px-8 py-3 bg-slate-900 text-white font-medium rounded-lg hover:bg-slate-800 transition-all transform hover:translate-y-[-2px]">
-								{editingProduct ? '💾 Update Piece' : '✨ Create Piece'}
+								{editingProduct ? 'Update Piece' : 'Create Piece'}
 							</button>
 							<button on:click={() => (showProductForm = false)} class="px-8 py-3 text-slate-600 font-medium border border-slate-200 rounded-lg hover:border-slate-300 hover:text-slate-700 transition-all">
-								🚫 Cancel
+								Cancel
 							</button>
 						</div>
 					</form>
@@ -261,7 +261,7 @@
 								</div>
 								<div class="flex gap-3">
 									<button on:click={() => openProductForm(product)} class="flex-1 py-2 px-4 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:border-slate-300 hover:text-slate-700 transition-all">
-										✏️ Edit
+										Edit
 									</button>
 									<button
 										on:click={() => toggleProductStatus(product.id, product.isActive)}
@@ -269,13 +269,13 @@
 											? 'text-red-600 hover:border-red-300 hover:text-red-700'
 											: 'text-emerald-600 hover:border-emerald-300 hover:text-emerald-700'}"
 									>
-										{product.isActive ? '🚫 Deactivate' : '✅ Activate'}
+										{product.isActive ? 'Deactivate' : '✅ Activate'}
 									</button>
 									<button
 										on:click={() => deleteProduct(product.id)}
 										class="flex-1 py-2 px-4 text-sm font-medium text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition-all"
 									>
-										🗑️ Delete
+										Delete
 									</button>
 								</div>
 							</div>
@@ -292,7 +292,7 @@
 							<div>
 								<div class="flex items-center gap-4 mb-3">
 									<h3 class="text-xl font-bold text-slate-900">
-										📦 Order #{order.id}
+										Order #{order.id}
 									</h3>
 									<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
 										{order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
@@ -306,13 +306,13 @@
 								</div>
 								<div class="space-y-1">
 									<p class="text-sm text-slate-600">
-										👤 Customer: {order.userEmail}
+										Customer: {order.userEmail}
 									</p>
 									<p class="text-sm text-slate-600">
-										📅 {new Date(order.createdAt).toLocaleString()}
+										{new Date(order.createdAt).toLocaleString()}
 									</p>
 									<p class="text-sm text-slate-600">
-										💰 Total Investment: ${order.totalAmount.toFixed(2)}
+										Total Investment: ${order.totalAmount.toFixed(2)}
 									</p>
 								</div>
 							</div>
@@ -326,7 +326,7 @@
 						
 						<div class="border-t border-slate-100 pt-6">
 							<div class="flex items-center justify-between mb-4">
-								<label class="block text-sm font-medium text-slate-700">🔄 Update Order Journey:</label>
+								<label class="block text-sm font-medium text-slate-700">Update Order Journey:</label>
 								<div class="text-sm text-slate-500">
 									Current: <span class="font-medium">{order.status.replace('_', ' ')}</span>
 								</div>
@@ -340,7 +340,7 @@
 											? 'bg-slate-100 text-slate-400 cursor-not-allowed'
 											: 'text-slate-600 hover:border-slate-300 hover:text-slate-700'}"
 								>
-									✅ Confirm Order
+									Confirm Order
 								</button>
 								<button
 									on:click={() => updateOrderStatus(order.id, 'payment_received')}
@@ -350,7 +350,7 @@
 											? 'bg-emerald-100 text-emerald-400 cursor-not-allowed'
 											: 'text-emerald-600 hover:border-emerald-300 hover:text-emerald-700'}"
 								>
-									💳 Payment Received
+									Payment Received
 								</button>
 								<button
 									on:click={() => updateOrderStatus(order.id, 'delivered')}
@@ -360,7 +360,7 @@
 											? 'bg-indigo-100 text-indigo-400 cursor-not-allowed'
 											: 'text-indigo-600 hover:border-indigo-300 hover:text-indigo-700'}"
 								>
-									🚚 Delivered
+									Delivered
 								</button>
 								<button
 									on:click={() => updateOrderStatus(order.id, 'canceled')}
@@ -370,7 +370,7 @@
 											? 'bg-red-100 text-red-400 cursor-not-allowed'
 											: 'text-red-600 hover:border-red-300 hover:text-red-700'}"
 								>
-									🚫 Cancel Order
+									Cancel Order
 								</button>
 							</div>
 						</div>

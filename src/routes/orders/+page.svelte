@@ -129,7 +129,7 @@
 							<div>
 								<div class="flex items-center gap-4 mb-3">
 									<h2 class="text-2xl font-bold text-slate-900">
-										📦 Order #{order.id}
+										 Order #{order.id}
 									</h2>
 									<span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium
 										{order.status === 'pending' ? 'bg-yellow-100 text-yellow-700' :
@@ -142,7 +142,7 @@
 									</span>
 								</div>
 								<p class="text-sm text-slate-600">
-									📅 {formatDate(order.createdAt)}
+									 {formatDate(order.createdAt)}
 								</p>
 							</div>
 							<div class="text-right">
@@ -155,7 +155,7 @@
 
 						<!-- Order Items -->
 						<div class="mb-8">
-							<h3 class="text-lg font-semibold text-slate-900 mb-6">📦 Curated Pieces</h3>
+							<h3 class="text-lg font-semibold text-slate-900 mb-6">Curated Pieces</h3>
 							<div class="space-y-6">
 								{#each order.items as item}
 									<div class="group cursor-pointer">
@@ -171,7 +171,7 @@
 														{item.productName}
 													</h4>
 													<p class="text-sm text-slate-600">
-														🔢 Quantity: {item.quantity} × ${item.priceAtTime.toFixed(2)}
+														 Quantity: {item.quantity} × ${item.priceAtTime.toFixed(2)}
 													</p>
 												</div>
 												<div class="text-right">
@@ -209,7 +209,7 @@
 															on:click={() => submitReview(order.id, item.productId, item.existingRating, item.existingComment)}
 															class="inline-flex items-center px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:border-slate-300 hover:text-slate-700 transition-all"
 														>
-															✏️ Edit Experience
+															 Edit Experience
 														</button>
 													{:else}
 														<!-- Show review button -->
@@ -217,7 +217,7 @@
 															on:click={() => submitReview(order.id, item.productId)}
 															class="inline-flex items-center px-4 py-2 text-sm font-medium text-emerald-600 border border-emerald-200 rounded-lg hover:bg-emerald-50 transition-all"
 														>
-															🌟 Share Your Experience
+															Share Your Experience
 														</button>
 													{/if}
 
@@ -272,7 +272,7 @@
 																	on:click={() => toggleReviewForm(order.id, item.productId)}
 																	class="px-4 py-2 text-sm font-medium text-slate-600 border border-slate-200 rounded-lg hover:border-slate-300 hover:text-slate-700 transition-all"
 																>
-																	🚫 Cancel
+																	Cancel
 																</button>
 															</div>
 														</div>
@@ -288,13 +288,13 @@
 						<!-- Order Details -->
 						<div class="grid gap-6 border-t border-slate-100 pt-6">
 							<div class="space-y-2">
-								<p class="text-sm font-medium text-slate-700">📍 Shipping Address</p>
+								<p class="text-sm font-medium text-slate-700">Shipping Address</p>
 								<p class="text-sm text-slate-600 whitespace-pre-line">
 									{order.shippingAddress}
 								</p>
 							</div>
 							<div class="space-y-2">
-								<p class="text-sm font-medium text-slate-700">💳 Payment Method</p>
+								<p class="text-sm font-medium text-slate-700">Payment Method</p>
 								<p class="text-sm text-slate-600">
 									{order.paymentMethod.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
 								</p>

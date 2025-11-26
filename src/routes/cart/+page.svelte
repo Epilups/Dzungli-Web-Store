@@ -232,7 +232,7 @@
 							<form on:submit|preventDefault={checkout} class="space-y-6">
 								<div>
 									<label for="address" class="block text-sm font-medium text-slate-700 mb-3">
-										📍 Shipping Address
+										Shipping Address
 									</label>
 									<textarea
 										id="address"
@@ -245,7 +245,7 @@
 
 								<div>
 									<label for="payment" class="block text-sm font-medium text-slate-700 mb-3">
-										💳 Payment Method
+										Payment Method
 									</label>
 									<select id="payment" bind:value={paymentMethod} class="w-full px-4 py-3 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-400 focus:border-transparent transition-all">
 										<option value="credit_card">Credit Card</option>

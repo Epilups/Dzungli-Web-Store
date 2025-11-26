@@ -15,7 +15,7 @@
 	
 	let featuredProducts: Product[] = data.featuredProducts || [];
 	let categories = [
-		{ icon: '🛍️', name: 'Electronics', href: '/products?category=electronics' },
+		{ icon: '📱', name: 'Electronics', href: '/products?category=electronics' },
 		{ icon: '👔', name: 'Fashion', href: '/products?category=fashion' },
 		{ icon: '🏠', name: 'Home & Garden', href: '/products?category=home' },
 		{ icon: '⚽', name: 'Sports', href: '/products?category=sports' }
@@ -262,24 +262,8 @@
 						</a>
 					</div>
 					<div class="mt-8 flex items-center justify-center gap-6 text-sm text-slate-500">
-						<span class="flex items-center gap-2">
-							<svg class="h-4 w-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-								<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-							</svg>
-							Curated with Care
-						</span>
-						<span class="flex items-center gap-2">
-							<svg class="h-4 w-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-								<path d="M4.2 20a.7.7 0 01-.4-.1.7.7 0 01-.3-.7V3.8a.7.7 0 01.4-.6.7.7 0 01.7-.2h14a.7.7 0 01.6.2.7.7 0 01.4.6V19a.7.7 0 01-.4.7.7.7 0 01-.6.2H4.9a.7.7 0 01-.7-.2z" />
-							</svg>
-							Hassle-Free Returns
-						</span>
-						<span class="flex items-center gap-2">
-							<svg class="h-4 w-4 text-slate-400" fill="currentColor" viewBox="0 0 20 20">
-								<path d="M1.5 8.8c0-2 1.2-3.6 3-4.2V3a1 1 0 011-1 1 1 0 1h4a1 1 0 011 1 1 1 0 1v1.6c1.8.6 3 2.2 3 4.2a4.85 4.85 0 01-4.8 4.8 4.85 4.85 0 01-9.6 0zm0 8.4a4.85 4.85 0 01-4.8-4.8 4.85 4.85 0 014.8-4.8z" />
-							</svg>
-							Secure Checkout
-						</span>
+						
+				
 					</div>
 				</div>
 			</div>
