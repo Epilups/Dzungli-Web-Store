@@ -4,8 +4,7 @@ import path from 'path';
 
 const { Pool } = pg;
 
-const connectionString = process.env.DATABASE_URL || 
-  'postgresql://doadmin:AVNS_GUQCIg9T0u45BV-7CyN@webshop-postgresql-fra1-43263-do-user-13924298-0.g.db.ondigitalocean.com:25060/defaultdb?sslmode=require';
+const connectionString = process.env.DATABASE_URL;
 
 async function migrate() {
   const pool = new Pool({
