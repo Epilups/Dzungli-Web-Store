@@ -4,6 +4,7 @@ import type { PageServerLoad } from './$types';
 interface Product {
   id: number;
   name: string;
+  description: string;
   price: number;
   image_url: string;
   rating: number;
@@ -14,10 +15,10 @@ export const load: PageServerLoad = async () => {
   try {
     // Get featured products (first 6 active products)
     const products = await query<Product>(
-      `SELECT id, name, price, image_url, rating, review_count 
-       FROM products 
-       WHERE is_active = true 
-       ORDER BY rating DESC, review_count DESC 
+      `SELECT id, name, description, price, image_url, rating, review_count
+       FROM products
+       WHERE is_active = true
+       ORDER BY rating DESC, review_count DESC
        LIMIT 6`
     );
     
@@ -25,6 +26,7 @@ export const load: PageServerLoad = async () => {
       featuredProducts: products.map(p => ({
         id: String(p.id),
         name: p.name,
+        description: p.description,
         price: Number(p.price),
         image: p.image_url,
         rating: Number(p.rating),

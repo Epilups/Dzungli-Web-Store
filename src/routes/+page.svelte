@@ -1,9 +1,11 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	import ProductModal from '$lib/components/ProductModal.svelte';
 
 	interface Product {
 		id: string;
 		name: string;
+		description?: string;
 		price: number;
 		image: string;
 		rating: number;
@@ -14,6 +16,15 @@
 	export let data: PageData;
 	
 	let featuredProducts: Product[] = data.featuredProducts || [];
+	let selectedProduct: Product | null = null;
+
+	function openModal(product: Product) {
+		selectedProduct = product;
+	}
+
+	function closeModal() {
+		selectedProduct = null;
+	}
 	let categories = [
 		{ icon: '📱', name: 'Electronics', href: '/products?category=electronics' },
 		{ icon: '👔', name: 'Fashion', href: '/products?category=fashion' },
@@ -171,7 +182,10 @@
 						/>
 						<div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 						<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-							<button class="w-full py-2 bg-white/95 backdrop-blur-sm text-slate-700 font-medium rounded-lg text-sm border border-slate-200 shadow-lg">
+							<button
+								onclick={() => openModal(product)}
+								class="w-full py-2 bg-white/95 backdrop-blur-sm text-slate-700 font-medium rounded-lg text-sm border border-slate-200 shadow-lg hover:bg-white transition-colors"
+							>
 								View Details
 							</button>
 						</div>
@@ -209,7 +223,7 @@
 						<div class="flex items-center justify-between">
 							<p class="text-xl font-bold text-slate-900">${product.price.toFixed(2)}</p>
 							<button
-								on:click={() => addToCart(product)}
+								onclick={() => addToCart(product)}
 								aria-label="Add {product.name} to cart"
 								class="p-2 text-slate-600 hover:text-slate-900 transition-colors"
 							>
@@ -234,6 +248,9 @@
 		</div>
 	</div>
 </section>
+
+<!-- Product Modal -->
+<ProductModal product={selectedProduct} onClose={closeModal} />
 
 <!-- Craftsmanship CTA Section -->
 <section class="py-16 sm:py-20 bg-gradient-to-br from-slate-50 via-white to-stone-50">

@@ -3,10 +3,12 @@
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
 	import type { PageData } from './$types';
+	import ProductModal from '$lib/components/ProductModal.svelte';
 
 	interface Product {
 		id: string;
 		name: string;
+		description?: string;
 		price: number;
 		image: string;
 		rating: number;
@@ -18,6 +20,7 @@
 	export let data: PageData;
 	
 	$: products = data.products || [];
+	let selectedProduct: Product | null = null;
 	let selectedCategory = $page.url.searchParams.get('category') || 'all';
 	let sortBy = $page.url.searchParams.get('sort') || 'featured';
 	let searchQuery = $page.url.searchParams.get('search') || '';
@@ -75,7 +78,14 @@
 			alert('Failed to add to cart');
 		}
 	}
-	
+
+	function openModal(product: Product) {
+		selectedProduct = product;
+	}
+
+	function closeModal() {
+		selectedProduct = null;
+	}
 </script>
 
 <svelte:head>
@@ -223,7 +233,10 @@
 									{/if}
 									<div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 									<div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-										<button class="w-full py-2 bg-white/95 backdrop-blur-sm text-slate-700 font-medium rounded-lg text-sm border border-slate-200 shadow-lg">
+										<button
+											onclick={() => openModal(product)}
+											class="w-full py-2 bg-white/95 backdrop-blur-sm text-slate-700 font-medium rounded-lg text-sm border border-slate-200 shadow-lg hover:bg-white transition-colors"
+										>
 											View Details
 										</button>
 									</div>
@@ -293,3 +306,6 @@
 		</div>
 	</div>
 </section>
+
+<!-- Product Modal -->
+<ProductModal product={selectedProduct} onClose={closeModal} />

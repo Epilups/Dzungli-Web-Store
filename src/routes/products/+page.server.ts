@@ -60,6 +60,7 @@ export const load: PageServerLoad = async ({ url }) => {
       products: products.map(p => ({
         id: String(p.id),
         name: p.name,
+        description: p.description,
         price: Number(p.price),
         image: p.image_url,
         rating: Number(p.rating),
