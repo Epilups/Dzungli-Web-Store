@@ -17,7 +17,6 @@ async function resetReviews() {
   try {
     console.log(' Starting reviews migration...');
     
-    // Create reviews table
     await pool.query(`
       CREATE TABLE IF NOT EXISTS reviews (
         id SERIAL PRIMARY KEY,
@@ -33,14 +32,12 @@ async function resetReviews() {
     `);
     console.log(' Reviews table created');
     
-    // Create indexes
     await pool.query(`
       CREATE INDEX IF NOT EXISTS idx_reviews_product_id ON reviews(product_id);
       CREATE INDEX IF NOT EXISTS idx_reviews_user_id ON reviews(user_id);
     `);
     console.log(' Indexes created');
     
-    // Reset all product ratings and review counts to 0
     await pool.query(`
       UPDATE products 
       SET rating = 0, review_count = 0 
