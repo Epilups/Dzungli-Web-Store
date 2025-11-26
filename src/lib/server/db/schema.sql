@@ -96,22 +96,6 @@ CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_product_id ON reviews(product_id);
 CREATE INDEX IF NOT EXISTS idx_reviews_user_id ON reviews(user_id);
 
--- Insert some products
-INSERT INTO products (name, description, price, image_url, category, stock_quantity, rating, review_count) VALUES
-('Premium Wireless Headphones', 'High-quality wireless headphones with noise cancellation', 149.99, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop', 'electronics', 50, 0, 0),
-('Smart Watch Pro', 'Advanced smartwatch with health tracking features', 299.99, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop', 'electronics', 30, 0, 0),
-('Ultra HD Camera', 'Professional 4K camera for photography enthusiasts', 799.99, 'https://images.unsplash.com/photo-1610933919313-52581002a659?w=500&h=500&fit=crop', 'electronics', 15, 0, 0),
-('Laptop Stand Pro', 'Ergonomic laptop stand with adjustable height', 49.99, 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=500&fit=crop', 'home', 100, 0, 0),
-('Mechanical Keyboard', 'RGB mechanical keyboard with custom switches', 129.99, 'https://images.unsplash.com/photo-1587829191301-2a718cbf31f4?w=500&h=500&fit=crop', 'electronics', 75, 0, 0),
-('Portable Charger', '20000mAh fast charging power bank', 39.99, 'https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500&h=500&fit=crop', 'electronics', 200, 0, 0),
-('Yoga Mat Premium', 'Eco-friendly yoga mat with extra cushioning', 59.99, 'https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500&h=500&fit=crop', 'sports', 60, 0, 0),
-('Running Shoes Pro', 'Professional running shoes with arch support', 129.99, 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&h=500&fit=crop', 'sports', 45, 0, 0),
-('Casual T-Shirt', 'Comfortable cotton t-shirt in various colors', 29.99, 'https://images.unsplash.com/photo-1556821552-7f41c5d440db?w=500&h=500&fit=crop', 'fashion', 150, 0, 0),
-('Blue Jeans Classic', 'Timeless denim jeans with perfect fit', 69.99, 'https://images.unsplash.com/photo-1542272604-787c62d465d1?w=500&h=500&fit=crop', 'fashion', 90, 0, 0),
-('Desk Lamp LED', 'Modern LED desk lamp with adjustable brightness', 79.99, 'https://images.unsplash.com/photo-1565636192335-14ae61a7f0d0?w=500&h=500&fit=crop', 'home', 80, 0, 0),
-('Wall Clock Modern', 'Contemporary wall clock with silent mechanism', 34.99, 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&h=500&fit=crop', 'home', 0, 0, 0)
-ON CONFLICT DO NOTHING;
-
 -- Create a default admin user (password: admin123)
 -- Password hash for 'admin123' using bcrypt
 INSERT INTO users (email, password_hash, first_name, last_name, is_admin) VALUES
